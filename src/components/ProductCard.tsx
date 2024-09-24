@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { JewelryItem } from '../data/jewelryData';
+import { useCart } from '../context/CartContext';
 
 interface ProductCardProps {
   product: JewelryItem;
@@ -10,9 +11,15 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const router = useRouter();
+  const { addToCart } = useCart();
 
   const handleViewDetails = () => {
     router.push(`/product/${product.id}`);
+  };
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    addToCart(product);
   };
 
   return (
@@ -36,12 +43,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <span className="text-lg font-bold text-indigo-600">${product.price.toFixed(2)}</span>
           <span className="text-sm text-gray-500">{product.material}</span>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 flex justify-between">
           <button 
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300"
+            className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300"
             onClick={handleViewDetails}
           >
             View Details
+          </button>
+          <button 
+            className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300"
+            onClick={handleAddToCart}
+          >
+            Add to Cart
           </button>
         </div>
       </div>
