@@ -50,3 +50,12 @@ body {
 .jewelry-emerald {
   color: theme('colors.jewelry.emerald');
 }
+
+/* Navbar styles */
+.navbar-link {
+  @apply py-4 px-2 text-gray-500 font-semibold hover:text-gray-900 transition duration-300;
+}
+
+.navbar-mobile-link {
+  @apply block py-2 px-4 text-sm hover:bg-gray-200;
+}
