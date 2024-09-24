@@ -25,3 +25,28 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Jewelry specific styles */
+.jewelry-gold {
+  color: theme('colors.jewelry.gold');
+}
+
+.jewelry-silver {
+  color: theme('colors.jewelry.silver');
+}
+
+.jewelry-rose {
+  color: theme('colors.jewelry.rose');
+}
+
+.jewelry-sapphire {
+  color: theme('colors.jewelry.sapphire');
+}
+
+.jewelry-ruby {
+  color: theme('colors.jewelry.ruby');
+}
+
+.jewelry-emerald {
+  color: theme('colors.jewelry.emerald');
+}
