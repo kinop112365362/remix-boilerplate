@@ -3,14 +3,24 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import Cart from './Cart';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { cartItems } = useCart();
+  const { user, logout } = useAuth();
 
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error('Failed to logout', error);
+    }
+  };
 
   return (
     <nav className="bg-white shadow-lg">
@@ -30,6 +40,22 @@ const Navbar = () => {
             </div>
           </div>
           <div className="flex items-center space-x-3">
+            {user ? (
+              <>
+                <span className="text-gray-700">{user.email}</span>
+                <button
+                  onClick={handleLogout}
+                  className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-gray-100 hover:text-gray-900 transition duration-300"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/login" className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-gray-100 hover:text-gray-900 transition duration-300">Login</Link>
+                <Link href="/register" className="py-2 px-2 font-medium text-white bg-indigo-500 rounded hover:bg-indigo-400 transition duration-300">Register</Link>
+              </>
+            )}
             <button
               className="relative p-2 text-gray-500 hover:text-gray-900"
               onClick={() => setIsCartOpen(!isCartOpen)}
