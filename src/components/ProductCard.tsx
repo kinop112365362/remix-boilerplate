@@ -1,6 +1,7 @@
 "use client";
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { JewelryItem } from '../data/jewelryData';
 
 interface ProductCardProps {
@@ -8,10 +9,10 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const router = useRouter();
+
   const handleViewDetails = () => {
-    // 在这里处理查看详情的逻辑
-    console.log(`View details for ${product.name}`);
-    // 可以添加导航逻辑或打开模态框等
+    router.push(`/product/${product.id}`);
   };
 
   return (
