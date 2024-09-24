@@ -20,6 +20,7 @@ const config: Config = {
           emerald: "#50C878",
         },
       },
+      objectFit: ['responsive', 'hover', 'focus'],
     },
   },
   plugins: [],

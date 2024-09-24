@@ -14,6 +14,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           alt={product.name}
           layout="fill"
           objectFit="cover"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = "https://via.placeholder.com/300x300?text=Image+Not+Found";
+          }}
         />
       </div>
       <div className="p-4">
