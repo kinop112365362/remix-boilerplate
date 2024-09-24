@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image';
 import { JewelryItem } from '../data/jewelryData';
 
@@ -6,6 +8,12 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const handleViewDetails = () => {
+    // 在这里处理查看详情的逻辑
+    console.log(`View details for ${product.name}`);
+    // 可以添加导航逻辑或打开模态框等
+  };
+
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden">
       <div className="relative h-64">
@@ -28,7 +36,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <span className="text-sm text-gray-500">{product.material}</span>
         </div>
         <div className="mt-4">
-          <button className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300">
+          <button 
+            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300"
+            onClick={handleViewDetails}
+          >
             View Details
           </button>
         </div>
