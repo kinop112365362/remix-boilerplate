@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import { jewelryData } from '../../../data/jewelryData';
+import ProductImage from '../../../components/ProductImage';
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   const product = jewelryData.find(item => item.id === params.id);
@@ -15,16 +15,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         <div className="md:flex">
           <div className="md:flex-shrink-0">
             <div className="relative h-96 w-full md:w-96">
-              <Image
-                src={product.image}
-                alt={product.name}
-                layout="fill"
-                objectFit="cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "https://via.placeholder.com/300x300?text=Image+Not+Found";
-                }}
-              />
+              <ProductImage src={product.image} alt={product.name} />
             </div>
           </div>
           <div className="p-8">
